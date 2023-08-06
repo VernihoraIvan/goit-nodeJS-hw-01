@@ -43,13 +43,20 @@ async function removeContact(contactId) {
 }
 // removeContact("rsKkOQUi80UsgVPCcLZZW").then((data) => console.log(data));
 
-async function addContact(name, email, phone) {
+async function addContact(conactData) {
   // ...твій код. Повертає об'єкт доданого контакту.
   const data = await listContacts();
-  data.push({ id: nanoid(), name, email, phone });
+  data.push({ id: nanoid(), ...conactData });
   fs.writeFile(contactsPath, JSON.stringify(data));
 }
 
-addContact("Ivan", "ian@getMaxListeners.com", "+38094382498").then((data) =>
-  console.log(data)
-);
+// addContact("Ivan", "ian@getMaxListeners.com", "+38094382498").then((data) =>
+//   console.log(data)
+// );
+
+module.exports = {
+  listContacts,
+  getContactById,
+  removeContact,
+  addContact,
+};
