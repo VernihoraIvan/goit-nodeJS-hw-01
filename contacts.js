@@ -36,6 +36,7 @@ async function removeContact(contactId) {
   if (!deletedContact.length) {
     return null;
   }
+  console.log(deletedContact);
   const dataToWrite = await data.filter((element) => element.id !== contactId);
   const stringifiedData = [JSON.stringify(dataToWrite)];
   fs.writeFile(contactsPath, stringifiedData);
@@ -46,7 +47,9 @@ async function removeContact(contactId) {
 async function addContact(conactData) {
   // ...твій код. Повертає об'єкт доданого контакту.
   const data = await listContacts();
-  data.push({ id: nanoid(), ...conactData });
+  const newContact = { id: nanoid(), ...conactData };
+  console.log(newContact);
+  data.push(newContact);
   fs.writeFile(contactsPath, JSON.stringify(data));
 }
 
