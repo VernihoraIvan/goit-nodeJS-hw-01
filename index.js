@@ -1,16 +1,16 @@
-const { Command } = require("commander");
-const program = new Command();
-program
-  .option("-a, --action <type>", "choose action")
-  .option("-i, --id <type>", "user id")
-  .option("-n, --name <type>", "user name")
-  .option("-e, --email <type>", "user email")
-  .option("-p, --phone <type>", "user phone");
+// const { Command } = require("commander");
+// const program = new Command();
+// program
+//   .option("-a, --action <type>", "choose action")
+//   .option("-i, --id <type>", "user id")
+//   .option("-n, --name <type>", "user name")
+//   .option("-e, --email <type>", "user email")
+//   .option("-p, --phone <type>", "user phone");
 
-program.parse(process.argv);
+// program.parse(process.argv);
 
-const argv = program.opts();
-// const argv = require("yargs").argv;
+// const argv = program.opts();
+const argv = require("yargs").argv;
 
 const contacts = require("./contacts");
 
@@ -35,6 +35,7 @@ async function invokeAction({ action, id, name, email, phone }) {
 
     case "remove":
       const removedContact = await contacts.removeContact(id);
+      console.log(removedContact);
       break;
 
     default:

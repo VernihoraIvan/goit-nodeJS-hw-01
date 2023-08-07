@@ -29,18 +29,26 @@ async function getContactById(contactId) {
 async function removeContact(contactId) {
   // ...твій код. Повертає об'єкт видаленого контакту. Повертає null, якщо контакт з таким id не знайдений.
   const data = await listContacts();
-
+  // console.log(data);
+  const index = data.findIndex((element) => element.id === contactId);
+  if (index === -1) {
+    return null;
+  }
   const deletedContact = await data.filter(
     (element) => element.id === contactId
   );
-  if (!deletedContact.length) {
-    return null;
-  }
-  console.log(deletedContact);
+  // if (Number(!deletedContact.length - 1)) {
+  //   console.log(Number(!deletedContact.length));
+  //   return null;
+  // }
+
+  // console.log(deletedContact);
   const dataToWrite = await data.filter((element) => element.id !== contactId);
+
   const stringifiedData = [JSON.stringify(dataToWrite)];
   fs.writeFile(contactsPath, stringifiedData);
-  return deletedContact;
+
+  return deletedContact[0];
 }
 // removeContact("rsKkOQUi80UsgVPCcLZZW").then((data) => console.log(data));
 
