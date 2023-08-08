@@ -1,5 +1,4 @@
 const fs = require("fs/promises");
-// const { nanoid } = require("nanoid");
 const path = require("path");
 const { nanoid } = require("nanoid");
 
@@ -37,12 +36,7 @@ async function removeContact(contactId) {
   const deletedContact = await data.filter(
     (element) => element.id === contactId
   );
-  // if (Number(!deletedContact.length - 1)) {
-  //   console.log(Number(!deletedContact.length));
-  //   return null;
-  // }
 
-  // console.log(deletedContact);
   const dataToWrite = await data.filter((element) => element.id !== contactId);
 
   const stringifiedData = [JSON.stringify(dataToWrite)];
@@ -58,7 +52,7 @@ async function addContact(conactData) {
   const newContact = { id: nanoid(), ...conactData };
   console.log(newContact);
   data.push(newContact);
-  fs.writeFile(contactsPath, JSON.stringify(data));
+  fs.writeFile(contactsPath, JSON.stringify(data, null, 2));
 }
 
 // addContact("Ivan", "ian@getMaxListeners.com", "+38094382498").then((data) =>
