@@ -21,7 +21,7 @@ async function getContactById(contactId) {
   if (!foundData.length) {
     return null;
   }
-  return foundData;
+  return foundData[0];
 }
 // getContactById("sdfsc").then((parsedData) => console.log(parsedData));
 
